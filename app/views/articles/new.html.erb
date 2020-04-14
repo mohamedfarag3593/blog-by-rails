@@ -1,0 +1,34 @@
+<h1 class="text-info text-center">Create Article</h1>
+<div class="container-fluid">
+    <%= form_with scope: :article, url: articles_path, class: "form-group", local: true do |form| %>
+        <% if @article.errors.any? %>
+            <div id="error_explanation">
+                <h2 class="text-danger">
+                    <%= pluralize(@article.errors.count, "error") %> prohibited
+                    this article from being saved:
+                </h2>
+                <ol>
+                    <% @article.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ol>
+            </div>
+        <% end %>
+        <p>
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control" %>
+        </p>
+
+        <p>
+            <%= form.label :text %>
+            <%= form.text_area :text, class: "form-control" %>
+        </p>
+
+        <p>
+            <%= form.submit " Save ", class: "btn btn-primary" %>
+        </p>
+    <% end %>
+    <p>
+        <%= link_to "Back", articles_path, class: "btn btn-info" %>
+    </p>
+</div>
